@@ -13,13 +13,8 @@ public class WordSearch{
     public static void main(String[] args){
 	String directions = " Welcome to WordSearchGenV1. please input the height, width,\n and the name of a plaintext file containing words (one per line) in that order./n If you wish you may also input a seed if you want to regenerate a puzzle previously generated,\n and input the word key after that if you wish to see the answer key to that problem.\n However, keep in mind these paramaters are both optional. For example, \n you could type in the terminal: /njava WordSearch 5 10 words.txt 857 key/n this would print a wordsearch of 5 by 10 that is identical to other searches with the seed 857 and also has the solutions printed out below.";
 
-	
 
-	if(args.length == 0){ //If there are no given parameters prints out directions
-	    System.out.println(directions);
-	}
-
-	else if(args.length == 3){ //If there are three parameters, inputs a random seed and doesn't print the answer
+	if(args.length == 3){ //If there are three parameters, inputs a random seed and doesn't print the answer
 	    int a = Integer.parseInt(args[0]);
 	    int b = Integer.parseInt(args[1]); 
 	    String c = args[2];	    
@@ -38,7 +33,7 @@ public class WordSearch{
 	    WordSearch puzzle = new WordSearch(a, b, c, d);
 	}
 
-        else if(args.length == 5){ //If five parameters, checks if 5th is "key" and if so prints the key as well as the puzzle
+    else if(args.length == 5){ //If five parameters, checks if 5th is "key" and if so prints the key as well as the puzzle
 	    int a = Integer.parseInt(args[0]);
 	    int b = Integer.parseInt(args[1]);
 	    String c = args[2];
@@ -46,6 +41,10 @@ public class WordSearch{
 	    String e = args[4];
 	    
 	    WordSearch puzzle = new WordSearch(a, b, c, d, e);
+	}
+	
+	else {
+		System.out.println(directions);
 	}
 
 
@@ -82,8 +81,8 @@ public class WordSearch{
 			  int ranRow = randgen.nextInt() % rows;
 			  int ranCol = randgen.nextInt() % cols;
 			  String word = wordsToAdd.get(Math.abs(randgen.nextInt() % wordsToAdd.size())).toUpperCase();
-			  int rowInc = (randgen.nextInt() % 3) - 1;
-			  int colInc = (randgen.nextInt() % 3) - 1;
+			  int rowInc = (Math.abs(randgen.nextInt() % 3)) - 1;
+			  int colInc = (Math.abs(randgen.nextInt() % 3)) - 1;
 		  
 			  addWord(ranRow, ranCol, word, rowInc, colInc);
 		  }
@@ -100,11 +99,12 @@ public class WordSearch{
 	  }
 	  
 	  System.out.println(puzzleToString());
-	  System.out.println(toString());
 	  
 	  System.out.println("Words to look for:");
 	  
 	  System.out.println(addedWords());
+	  
+	  System.out.println ("Random Seed = " + randSeed);
 	  
 	  
     }
@@ -112,7 +112,7 @@ public class WordSearch{
     public WordSearch(int rows, int cols, String fileName, int randSeed, String answers){
 	this(rows, cols, fileName, randSeed);
 	if(answers.equals("key")){
-	    System.out.println(data);
+	    System.out.println(toString());
 	}
     }
 
