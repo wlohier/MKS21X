@@ -13,22 +13,42 @@ public class WordSearch{
     public static void main(String[] args){
 	String directions = " Welcome to WordSearchGenV1. please input the height, width,\n and the name of a plaintext file containing words (one per line) in that order./n If you wish you may also input a seed if you want to regenerate a puzzle previously generated,\n and input the word key after that if you wish to see the answer key to that problem.\n However, keep in mind these paramaters are both optional. For example, \n you could type in the terminal: /njava WordSearch 5 10 words.txt 857 key/n this would print a wordsearch of 5 by 10 that is identical to other searches with the seed 857 and also has the solutions printed out below.";
 
+	
+
 	if(args.length == 0){ //If there are no given parameters prints out directions
 	    System.out.println(directions);
 	}
 
-	if(args.length == 3){ //If there are three parameters, inputs a random seed and doesn't print the answer
-	    Random seed = new Random();  //randomly generates a seed
-	    WordSearch(Integer.parseInt(args[0]), Integer.parseInt(args[1]), args[2], seed);
+	else if(args.length == 3){ //If there are three parameters, inputs a random seed and doesn't print the answer
+	    int a = Integer.parseInt(args[0]);
+	    int b = Integer.parseInt(args[1]);
+	    String c = args[2];
+	    Random ran = new Random(); //randomly generates a seed
+	    int seed = ran.nextInt();
+	    
+	    WordSearch puzzle = new WordSearch(a, b, c, seed);
 	}
 
-	if(args.length == 4){ //If four parameters, uses the fourth as a random seed
-	    WordSearch(Integer.parseInt(args[0]), Integer.parseInt(args[1]), args[2], Integer.parseInt(args[3]));
+	else if(args.length == 4){ //If four parameters, uses the fourth as a random seed
+	    int a = Integer.parseInt(args[0]);
+	    int b = Integer.parseInt(args[1]);
+	    String c = args[2];
+	    int d = Integer.parseInt(args[3]);
+	    
+	    WordSearch puzzle = new WordSearch(a, b, c, d);
 	}
 
-        if(args.length == 5){ //If five parameters, checks if 5th is "key" and if so prints the key as well as the puzzle
-	    WordSearch(Integer.parseInt(args[0]), Integer.parseInt(args[1]), args[2], Integer.parseInt(args[3]), args[5]);
+        else if(args.length == 5){ //If five parameters, checks if 5th is "key" and if so prints the key as well as the puzzle
+	    int a = Integer.parseInt(args[0]);
+	    int b = Integer.parseInt(args[1]);
+	    String c = args[2];
+	    int d = Integer.parseInt(args[3]);
+	    String e = args[4];
+	    
+	    WordSearch puzzle = new WordSearch(a, b, c, d, e);
 	}
+
+	System.out.println(directions);
 
 	
     }
@@ -82,6 +102,8 @@ public class WordSearch{
 	    }
 	    line += "\n";
 	}
+
+	return ans;
     }
 
     /*
