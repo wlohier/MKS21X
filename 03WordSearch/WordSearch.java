@@ -21,7 +21,7 @@ public class WordSearch{
 
 	else if(args.length == 3){ //If there are three parameters, inputs a random seed and doesn't print the answer
 	    int a = Integer.parseInt(args[0]);
-	    int b = Integer.parseInt(args[1]);
+	    int b = Integer.parseInt(args[1]); 
 	    String c = args[2];	    
 	    Random ran = new Random(); //randomly generates a seed
 	    int seed = ran.nextInt();
@@ -75,14 +75,18 @@ public class WordSearch{
       System.exit(1);
       }
 	  
+	  
 	  for(int i = 0; i < 1000; i++){
-		  int ranRow = randgen.nextInt() % rows;
-		  int ranCol = randgen.nextInt() % cols;
-		  String word = wordsToAdd.get(Math.abs(randgen.nextInt() % wordsToAdd.size())).toUpperCase();
-		  int rowInc = (randgen.nextInt() % 3) - 1;
-		  int colInc = (randgen.nextInt() % 3) - 1;
 		  
-		  addWord(ranRow, ranCol, word, rowInc, colInc);
+		  if(wordsToAdd.size() > 0){
+			  int ranRow = randgen.nextInt() % rows;
+			  int ranCol = randgen.nextInt() % cols;
+			  String word = wordsToAdd.get(Math.abs(randgen.nextInt() % wordsToAdd.size())).toUpperCase();
+			  int rowInc = (randgen.nextInt() % 3) - 1;
+			  int colInc = (randgen.nextInt() % 3) - 1;
+		  
+			  addWord(ranRow, ranCol, word, rowInc, colInc);
+		  }
 	  }
 	  
 	  for(int i = 0; i < data.length; i++){
@@ -98,15 +102,9 @@ public class WordSearch{
 	  System.out.println(puzzleToString());
 	  System.out.println(toString());
 	  
-	  for(int i = 0; i < wordsToAdd.size(); i++){
-		  System.out.println(wordsToAdd.get(i));
-	  }
+	  System.out.println("Words to look for:");
 	  
-	  System.out.println("");
-	  
-	  for(int i = 0; i < wordsAdded.size(); i++){
-		  System.out.println(wordsAdded.get(i));
-	  }
+	  System.out.println(addedWords());
 	  
 	  
     }
@@ -127,6 +125,17 @@ public class WordSearch{
 	    }
 	}
     }
+	
+	public String addedWords(){
+		String addedWords = "";
+		for(int i = 1; i < wordsAdded.size() + 1; i++){
+			addedWords += wordsAdded.get(i - 1) + " ";
+  			if(i % 3 == 0){
+				addedWords += "\n";
+  		  	}
+  	 	 }
+		 return addedWords;
+	}
 
 
     public String toString(){    //converts the data (including) '_' to a readable solution
@@ -160,6 +169,7 @@ public class WordSearch{
 	}
 
     /*
+
 
     /**Attempts to add a given word to the specified position of the WordGrid.
      *The word is added from left to right, must fit on the WordGrid, and must
@@ -229,6 +239,7 @@ public class WordSearch{
 	    data[row + i][col + 1] = word.charAt(i);
 	} return true;
     }
+	
 
 
     */
