@@ -60,13 +60,14 @@ public class WordSearch{
 	wordsToAdd = new ArrayList<String>();
 	wordsAdded = new ArrayList<String>();
 	
+	clear();
+	
 	
 	try{
 	    File f = new File(fileName);
 	    Scanner in = new Scanner(f);
 	    while(in.hasNextLine()){
 		String line = in.nextLine();
-	        System.out.println(line);
 	        wordsToAdd.add(line);
 	    }  
 	}catch(FileNotFoundException e){
@@ -78,12 +79,14 @@ public class WordSearch{
 	  for(int i = 0; i < 1000; i++){
 		  int ranRow = randgen.nextInt() % rows;
 		  int ranCol = randgen.nextInt() % cols;
-		  String word = wordsToAdd.get(randgen.nextInt() % wordsToAdd.size());
+		  String word = wordsToAdd.get(Math.abs(randgen.nextInt() % wordsToAdd.size()));
 		  int rowInc = (randgen.nextInt() % 3) - 1;
 		  int colInc = (randgen.nextInt() % 3) - 1;
 		  
 		  addWord(ranRow, ranCol, word, rowInc, colInc);
 	  }
+	  
+	  System.out.println(toString());
 	  
     }
 
@@ -99,6 +102,7 @@ public class WordSearch{
         for(int i = 0; i < data.length; i++){
 	    for(int j = 0; j < data[i].length; j++){
 		data[i][j] = '_';
+		puzzle[i][j] = '_';
 	    }
 	}
     }
@@ -109,13 +113,14 @@ public class WordSearch{
      */
     public String toString(){
 	String ans = "";
-        for(int i = 0; i < data.length; i++){
-	    String line = "";
+    for(int i = 0; i < data.length; i++){
+		String line = "";
 	    for(int j = 0; j < data[i].length; j++){
 		line += data[i][j];
 		line += " ";
 	    }
-	    line += "\n";
+	line += "\n";
+	ans += line;
 	}
 
 	return ans;
