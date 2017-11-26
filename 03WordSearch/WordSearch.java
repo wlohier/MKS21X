@@ -27,7 +27,6 @@ public class WordSearch{
 	    int seed = ran.nextInt();
 	    
 	    WordSearch puzzle = new WordSearch(a, b, c, seed);
-	    System.out.println(a);
 	}
 
 	else if(args.length == 4){ //If four parameters, uses the fourth as a random seed
@@ -68,7 +67,7 @@ public class WordSearch{
 	    Scanner in = new Scanner(f);
 	    while(in.hasNextLine()){
 		String line = in.nextLine();
-	        wordsToAdd.add(line);
+	        wordsToAdd.add(line.toUpperCase());
 	    }  
 	}catch(FileNotFoundException e){
       System.out.println("File not found: " + fileName);
@@ -79,14 +78,36 @@ public class WordSearch{
 	  for(int i = 0; i < 1000; i++){
 		  int ranRow = randgen.nextInt() % rows;
 		  int ranCol = randgen.nextInt() % cols;
-		  String word = wordsToAdd.get(Math.abs(randgen.nextInt() % wordsToAdd.size()));
+		  String word = wordsToAdd.get(Math.abs(randgen.nextInt() % wordsToAdd.size())).toUpperCase();
 		  int rowInc = (randgen.nextInt() % 3) - 1;
 		  int colInc = (randgen.nextInt() % 3) - 1;
 		  
 		  addWord(ranRow, ranCol, word, rowInc, colInc);
 	  }
 	  
+	  for(int i = 0; i < data.length; i++){
+		  for(int j = 0; j < data[0].length; j++){
+			  if(data[i][j] == '_'){
+				  puzzle[i][j] = (char)((Math.abs(randgen.nextInt() % 26)) + 65);
+			  } else {
+				  puzzle[i][j] = data[i][j];
+			  }
+		  }
+	  }
+	  
+	  System.out.println(puzzleToString());
 	  System.out.println(toString());
+	  
+	  for(int i = 0; i < wordsToAdd.size(); i++){
+		  System.out.println(wordsToAdd.get(i));
+	  }
+	  
+	  System.out.println("");
+	  
+	  for(int i = 0; i < wordsAdded.size(); i++){
+		  System.out.println(wordsAdded.get(i));
+	  }
+	  
 	  
     }
 
@@ -107,11 +128,8 @@ public class WordSearch{
 	}
     }
 
-    /**The proper formatting for a WordGrid is created in the toString.
-     *@return a String with each character separated by spaces, and rows
-     *separated by newlines.
-     */
-    public String toString(){
+
+    public String toString(){    //converts the data (including) '_' to a readable solution
 	String ans = "";
     for(int i = 0; i < data.length; i++){
 		String line = "";
@@ -125,6 +143,21 @@ public class WordSearch{
 
 	return ans;
     }
+	
+	public String puzzleToString(){ //converts the puzzle with all the random letters to a readable solution
+		String ans = "";
+	    for(int i = 0; i < puzzle.length; i++){
+			String line = "";
+		    for(int j = 0; j < puzzle[i].length; j++){
+			line += puzzle[i][j];
+			line += " ";
+		    }
+		line += "\n";
+		ans += line;
+		}
+
+		return ans;
+	}
 
     /*
 
@@ -218,9 +251,10 @@ public class WordSearch{
 
 	for(int i = 0; i < word.length(); i++){
 	    data[row + i*rowIncrement][col + i*colIncrement] = word.charAt(i);
-	    wordsToAdd.remove(word);
-	    wordsAdded.add(word);
 	    }
+		
+	wordsToAdd.remove(word);
+	wordsAdded.add(word);
 	
 	return true;
 	    
