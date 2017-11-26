@@ -22,11 +22,12 @@ public class WordSearch{
 	else if(args.length == 3){ //If there are three parameters, inputs a random seed and doesn't print the answer
 	    int a = Integer.parseInt(args[0]);
 	    int b = Integer.parseInt(args[1]);
-	    String c = args[2];
+	    String c = args[2];	    
 	    Random ran = new Random(); //randomly generates a seed
 	    int seed = ran.nextInt();
 	    
 	    WordSearch puzzle = new WordSearch(a, b, c, seed);
+	    System.out.println(a);
 	}
 
 	else if(args.length == 4){ //If four parameters, uses the fourth as a random seed
@@ -48,28 +49,42 @@ public class WordSearch{
 	    WordSearch puzzle = new WordSearch(a, b, c, d, e);
 	}
 
-	System.out.println(directions);
 
 	
     }
 
     public WordSearch(int rows, int cols, String fileName, int randSeed){
 	data = new char[rows][cols];
+	puzzle = new char[rows][cols];
+	randgen = new Random(randSeed);	
+	wordsToAdd = new ArrayList<String>();
+	wordsAdded = new ArrayList<String>();
+	
 	
 	try{
-	    File f = new File(fileName);//can combine
-	    Scanner in = new Scanner(f);//into one line
-	    while(in.hasNext()){
+	    File f = new File(fileName);
+	    Scanner in = new Scanner(f);
+	    while(in.hasNextLine()){
 		String line = in.nextLine();
+	        System.out.println(line);
 	        wordsToAdd.add(line);
-		//System.out.println(line);
 	    }  
 	}catch(FileNotFoundException e){
       System.out.println("File not found: " + fileName);
       //e.printStackTrace();
       System.exit(1);
       }
-	randgen = new Random(randSeed);	
+	  
+	  for(int i = 0; i < 1000; i++){
+		  int ranRow = randgen.nextInt() % rows;
+		  int ranCol = randgen.nextInt() % cols;
+		  String word = wordsToAdd.get(randgen.nextInt() % wordsToAdd.size());
+		  int rowInc = (randgen.nextInt() % 3) - 1;
+		  int colInc = (randgen.nextInt() % 3) - 1;
+		  
+		  addWord(ranRow, ranCol, word, rowInc, colInc);
+	  }
+	  
     }
 
     public WordSearch(int rows, int cols, String fileName, int randSeed, String answers){
