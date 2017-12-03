@@ -16,14 +16,26 @@ public class Book{
 	return author;
     }
 
+    public void setAuthor(String a){
+	author = a;
+    }
+
     public String getTitle(){
 	return title;
+    }
+
+    public void setTitle(String t){
+	title = t;
     }
 
     public String getISBN(){
 	return ISBN;
     }
 
+    public void setISBN(String i){
+	ISBN = i;
+    }
+    
     public String toString(){
 	return title + "," + author + "," + ISBN;
     }
