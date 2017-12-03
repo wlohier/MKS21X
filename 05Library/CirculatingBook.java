@@ -2,8 +2,7 @@ public class CirculatingBook extends LibraryBook{
     private String currentHolder;
     private String dueDate;
 
-    public CirculatingBook(String a, String t, String i, String c,
-			   String ch, String d){
+    public CirculatingBook(String a, String t, String i, String c){
 	super(a, t, i, c);
     }
 
@@ -11,7 +10,7 @@ public class CirculatingBook extends LibraryBook{
 	return currentHolder;
     }
 
-    public void setCurrentHolder(String ch){
+    public void setCurrentHolderg(String ch){
 	currentHolder = ch;
     }
 
@@ -46,7 +45,7 @@ public class CirculatingBook extends LibraryBook{
 	if(currentHolder == null){
 	    return super.toString();
 	} else {
-	    return super.toString() + currentHolder + "," + dueDate;
+	    return super.toString() + ", " + currentHolder + ", " + dueDate;
 	}
     }
 

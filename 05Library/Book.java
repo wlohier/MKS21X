@@ -37,7 +37,7 @@ public class Book{
     }
     
     public String toString(){
-	return title + "," + author + "," + ISBN;
+	return title + ", " + author + ", " + ISBN;
     }
 
     
