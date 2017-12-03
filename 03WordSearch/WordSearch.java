@@ -11,8 +11,9 @@ public class WordSearch{
     private Random randgen;
 
     public static void main(String[] args){
-	String directions = " Welcome to WordSearchGenV1. please input the height, width,\n and the name of a plaintext file containing words (one per line) in that order./n If you wish you may also input a seed if you want to regenerate a puzzle previously generated,\n and input the word key after that if you wish to see the answer key to that problem.\n However, keep in mind these paramaters are both optional. For example, \n you could type in the terminal: /njava WordSearch 5 10 words.txt 857 key/n this would print a wordsearch of 5 by 10 that is identical to other searches with the seed 857 and also has the solutions printed out below.";
+	String directions = " Welcome to WordSearchGenV1. please input a height and  width greater than 1, and the name of a plaintext file containing words (one per line) in that order. If you wish you may also input a seed if you want to regenerate a puzzle previously generated, and input the word key after that if you wish to see the answer key to that problem.  However, keep in mind these paramaters are both optional. For example, you could type in the terminal: java WordSearch 5 10 words.txt 857 key this would print a wordsearch of 5 by 10 that is identical to other searches with the seed 857 and also has the solutions printed out below.";
 
+	try{
 
 	if(args.length == 3){ //If there are three parameters, inputs a random seed and doesn't print the answer
 	    int a = Integer.parseInt(args[0]);
@@ -45,6 +46,10 @@ public class WordSearch{
 	
 	else {
 		System.out.println(directions);
+	}
+	
+	} catch(IllegalArgumentException | NegativeArraySizeException | ArithmeticException ex){
+	    System.out.println(directions);
 	}
 
 
