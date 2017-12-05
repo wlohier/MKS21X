@@ -1,40 +1,60 @@
 public class Barcode implements Comparable<Barcode>{
 	private String zip;
-	private String codes[] = {"||:::", ":::||", "::|:|", "::||:",
-								":|::|", ":|:|:", ":||::", "|:::|", 
-								"|::|:", "|:|::"};
 	
 	public Barcode(String z){
-		if(zip.length() != 5){ //makes sure the length is correct
+		if(correctZip(z)){
+			zip = z;
+		} else {
 			throw new IllegalArgumentException();
+		}
+	}
+	
+	private boolean correctZip(String z){ //makes sure z is a correctly formatted zip
+		if(zip.length() != 5){ //makes sure the length is correct
+			return false;
 		}
 		
 		for(int i = 0; i < 5; i++){ //makes sure all characters are digits
 			if(!Character.isDigit(zip.charAt(i))){
-				throw new IllegalArgumentException();
+				return false;
 			}
 		}
 		
-		zip = z;	
+		return true;
 	}
 	
-	private int calcCheck(String z){ //calculates the check number
-		int sum = 0;
-		for(int i = 0; i < 5; i++){
-			sum += z.charAt(i) - '0';
+	private boolean correctCode(String c){ //NEED TO COMPLETE ******************************************************
+		if(c.length() != 32){
+			return false;
 		}
-		sum = sum % 10;
-		return sum;
+		
+		return true;
 	}
 	
-	private String toCode(String z){ //generates the barcode given a zip
+	public static String toCode(String z){ //generates the barcode given a zip
+		
+		String codes[] = {"||:::", ":::||", "::|:|", "::||:",
+							":|::|", ":|:|:", ":||::", "|:::|", 
+							"|::|:", "|:|::"};
+		
 		String ans = "|";
 		for(int i = 0; i < 5; i++){
 			ans += codes[z.charAt(i) - '0'];
 		}
-		ans += codes[calcCheck(z)];
+		
+		int check = 0; //The next couple lines generate the check number
+		for(int i = 0; i < 5; i++){
+			check += z.charAt(i) - '0';
+		}
+		check = check % 10;
+		
+		ans += codes[check];
 		ans += "|";
 		return ans;
+	}
+	
+	public static String toZip(String c){ //NEED TO COMPLETE *************************************************
+		return null;
 	}
 	
 	public String toString(){
