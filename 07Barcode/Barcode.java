@@ -1,6 +1,5 @@
-public class Barcode{
+public class Barcode implements Comparable<Barcode>{
 	private String zip;
-	private String barcode;
 	private String codes[] = {"||:::", ":::||", "::|:|", "::||:",
 								":|::|", ":|:|:", ":||::", "|:::|", 
 								"|::|:", "|:|::"};
@@ -19,7 +18,7 @@ public class Barcode{
 		zip = z;	
 	}
 	
-	public int calcCheck(){ //calculates the check number
+	private int calcCheck(){ //calculates the check number
 		int sum = 0;
 		for(int i = 0; i < 5; i++){
 			sum += zip.charAt(i) - '0';
@@ -28,7 +27,7 @@ public class Barcode{
 		return sum;
 	}
 	
-	public String genCode(){ //generates the barcode
+	private String genCode(){ //generates the barcode
 		String ans = "|";
 		for(int i = 0; i < 5; i++){
 			ans += codes[zip.charAt(i) - '0'];
@@ -44,6 +43,13 @@ public class Barcode{
 		return ans;
 	}
 	
+	public int compareTo(Barcode other){
+		return zip.compareTo(other.getZip());
+	}
+	
+	public String getZip(){
+		return zip;
+	}
 }
 
 
