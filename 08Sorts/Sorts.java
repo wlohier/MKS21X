@@ -21,7 +21,21 @@ public class Sorts{
 	}
 	
 	public static void insertionSort(int[] ary){
-		
+		if(!isSorted(ary)){
+			for(int l = 1; l < ary.length; l++){
+				int comp = l; //the index of where the value being added should go
+				for(int i = l; i >= 0; i--){
+					if(ary[l] < ary[i]){  //compares the value to each one before it
+						comp = i;
+					}
+				}
+				int temp = ary[l];
+				for(int j = l - 1; j >= comp; j--) {
+					ary[j + 1] = ary[j];
+				}
+				ary[comp] = temp;
+			}
+		}
 	}
 	
 	public static void selectionSort(int[] ary){
@@ -45,7 +59,7 @@ public class Sorts{
 		}
 		
 		System.out.println(Arrays.toString(beyonce));
-		selectionSort(beyonce);
+		insertionSort(beyonce);
 		System.out.println(Arrays.toString(beyonce));
 	}
 	
