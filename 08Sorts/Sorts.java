@@ -52,14 +52,29 @@ public class Sorts{
 		}
 	}
 	
+	public static void bubbleSort(int[] ary){
+		for(int end = ary.length - 1; end > 0; end--){
+			int numSwaps = 0;
+			for(int i = 0; i < end; i++){
+				if(ary[i] > ary[i + 1]){
+					swap(ary, i, i + 1);
+					numSwaps += 1;
+				}
+			}
+			if(numSwaps == 0){
+				return;
+			}
+		}
+	}
+	
 	public static void main(String[] args){
 		int[] beyonce = new int[15];
 		for(int i = 0; i < beyonce.length; i++){
-			beyonce[i] = (int)(Math.random()*beyonce.length);
+			beyonce[i] = (int)(Math.random()*100);
 		}
 		
 		System.out.println(Arrays.toString(beyonce));
-		insertionSort(beyonce);
+		bubbleSort(beyonce);
 		System.out.println(Arrays.toString(beyonce));
 	}
 	
