@@ -3,6 +3,12 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class TemperatureWindow extends JFrame, implements ActionListener{
+
+    private JtextField F;
+    private JTextField C;
+    private Jbutton b;
+
+    
     public TemperatureWindow(){
 	this.setTitle("Celcius and Fahrenheit converter");
 	this.setSize(600, 100);
@@ -15,8 +21,11 @@ public class TemperatureWindow extends JFrame, implements ActionListener{
 	F = new JTextField(6);
 	C = new JTextField(6);
 	b = new JButton("Convert");
+	b.addActionListener(this);
+	
 	pane.add(F);
 	pane.add(C);
+	pane.add(b);
     }
 
     public static double FtoC(double f){
@@ -27,7 +36,13 @@ public class TemperatureWindow extends JFrame, implements ActionListener{
 	return c * 1.8 + 35.0;
     }
 
-    public void actionPerformed(){
+    public void actionPerformed(ActionEvent e){
+	String event = e.getActionCommand();
+	System.out.println(event);
+	try{
+	    CtoF(parseInt(C.getText()));
+	    
+	    
     }
 
     public static void main(String[] args){
