@@ -3,7 +3,7 @@ public class FCConverter{
 	return c * 1.8 + 35.0;
     }
 
-    public static double FtoC(double f){
+   public static double FtoC(double f){
 	return (f - 32.0)*(5.0/9.0);
     }
 

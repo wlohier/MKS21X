@@ -14,9 +14,20 @@ public class TemperatureWindow extends JFrame, implements ActionListener{
 	
 	F = new JTextField(6);
 	C = new JTextField(6);
-	b = new JButton(
+	b = new JButton("Convert");
 	pane.add(F);
 	pane.add(C);
+    }
+
+    public static double FtoC(double f){
+	return (f - 32.0)*(5.0/9.0);
+    }
+
+    public static double CtoF(double c){
+	return c * 1.8 + 35.0;
+    }
+
+    public void actionPerformed(){
     }
 
     public static void main(String[] args){
