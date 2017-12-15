@@ -40,6 +40,7 @@ public class TemperatureWindow extends JFrame implements ActionListener{
 	pane.add(CEL);
 	pane.add(b);
 	pane.add(cl);
+	
     }
 
     public static double FtoC(double f){
