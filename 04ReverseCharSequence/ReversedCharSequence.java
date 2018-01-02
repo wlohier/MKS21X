@@ -1,10 +1,10 @@
 import java.lang.CharSequence;
 
-public class ReverseCharSequence implements CharSequence{
+public class ReversedCharSequence implements CharSequence{
     private String data;
 
     
-    public ReverseCharSequence(String s){
+    public ReversedCharSequence(String s){
 	data = s;
     }
 
@@ -22,7 +22,7 @@ public class ReverseCharSequence implements CharSequence{
 	    ans += charAt(i);
 	}
 	
-	CharSequence CS = new ReverseCharSequence(ans);
+	CharSequence CS = new ReversedCharSequence(ans);
         return CS;
     }
 
