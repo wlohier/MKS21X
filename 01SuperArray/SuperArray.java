@@ -21,7 +21,6 @@ public class SuperArray{
     public boolean add(String element){
 	if(data.length >= size - 1){
 	    resize();
-	    System.out.println("had to resize");
 	}
 	data[size] = element;
         size += 1;
@@ -43,8 +42,7 @@ public class SuperArray{
 	    data[index] = element;
 	    return old;
 	} else {
-	    System.out.println("ERROR - index out of range for set");
-	    return null;
+	    throw new IndexOutOfBoundsException();
 	}
     }
 
