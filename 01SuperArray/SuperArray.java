@@ -31,17 +31,17 @@ public class SuperArray{
 	if(index > -1 && index < size()){
 	    return data[index];
 	}else{
-	    throw new ArrayIndexOutOfBoundsException();
+	    throw new IndexOutOfBoundsException();
 	}
     }
 
     public String set(int index, String element){
-	if(index >= 0 && index < data.length){
+	if(index < 0 || index < size - 1){
+	    throw new IndexOutOfBoundsException();
+	} else {
 	    String old = data[index];
 	    data[index] = element;
 	    return old;
-	} else {
-	    throw new IndexOutOfBoundsException();
 	}
     }
 
@@ -90,11 +90,10 @@ public class SuperArray{
     }
 
     public void add(int index, String element){
-	if(index > data.length|| index < 0){
-	    System.out.println("add index out of range");
+	if(index > size || index < 0){
+	    throw new IndexOutOfBoundsException();
 	}else{
 	    if(size >= data.length - 1){
-		System.out.println("Need to resize");
 		resize();
 	    } for(int i = size + 1; i > index; i--){
 		data[i] = data[i - 1];
@@ -105,8 +104,7 @@ public class SuperArray{
 
     public String remove(int index){
 	if(index > size - 1 || index < 0){
-	    System.out.println("remove index out of range");
-	    return null;
+	    throw new IndexOutOfBoundsException();
 	}else{
 	    String val = data[index];
 	    for(int i = index; i < size - 2; i++){
