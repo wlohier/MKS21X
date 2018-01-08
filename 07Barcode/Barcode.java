@@ -10,12 +10,12 @@ public class Barcode implements Comparable<Barcode>{
 	}
 	
 	private boolean correctZip(String z){ //makes sure z is a correctly formatted zip
-		if(zip.length() != 5){ //makes sure the length is correct
+		if(z.length() != 5){ //makes sure the length is correct
 			return false;
 		}
 		
 		for(int i = 0; i < 5; i++){ //makes sure all characters are digits
-			if(!Character.isDigit(zip.charAt(i))){
+			if(!Character.isDigit(z.charAt(i))){
 				return false;
 			}
 		}
