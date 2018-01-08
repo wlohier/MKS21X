@@ -118,23 +118,23 @@ public class Barcode implements Comparable<Barcode>{
 		return ans;
 	}
 	
-	
-	public String toString(){
+
+        public String toString(){
 		String ans = toCode(zip) + " ";
 		ans += "(" + zip + ")";
 		return ans;
 	}
-	
+
 	public int compareTo(Barcode other){
-		return zip.compareTo(other.getZip());
+	    return Integer.parseInt(zip) - Integer.parseInt(other.getZip());
 	}
 	
 	public String getZip(){
-		return zip;
+	    return zip;
 	}
 	
 	public String getCode(){
-		return toCode(zip);
+	    return toCode(zip);
 	}
 		
 	
