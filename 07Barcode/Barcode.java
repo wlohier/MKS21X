@@ -52,7 +52,7 @@ public class Barcode implements Comparable<Barcode>{
 				numCol += 1;
 			}
 			
-			if(c.charAt(i) == ':'){
+			if(c.charAt(i) == '|'){
 				numSlash +=1;
 			}
 			
@@ -128,6 +128,10 @@ public class Barcode implements Comparable<Barcode>{
 	public int compareTo(Barcode other){
 	    return Integer.parseInt(zip) - Integer.parseInt(other.getZip());
 	}
+
+        public boolean equals(Barcode other){
+	    return this.compareTo(other) == 0;
+        }
 	
 	public String getZip(){
 	    return zip;
