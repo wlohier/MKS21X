@@ -31,8 +31,7 @@ public class SuperArray{
 	if(index > -1 && index < size()){
 	    return data[index];
 	}else{
-	    System.out.println("ERROR - index out of range for get");
-	    return null;
+	    throw new ArrayIndexOutOfBoundsException();
 	}
     }
 
